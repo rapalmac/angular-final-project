@@ -1,0 +1,44 @@
+<section class="container">
+    <h2>User details</h2>
+
+    <div class="fx-column details-section">
+        <div>
+            <strong>About me:</strong>
+        </div>
+        <div class="text-field"><p>{{userDetails.bio}}</p></div>
+    </div>
+
+    <div class="fx-column details-section">
+        <div>
+            <strong>Areas of interests:</strong>
+        </div>
+        <div>
+            <mat-chip-set>
+                <mat-chip *ngFor="let interest of userDetails.interests">{{interest}}</mat-chip>
+            </mat-chip-set>
+        </div>
+    </div>
+
+    <div class="fx-column details-section">
+        <div>
+            <strong>Professional experience:</strong>
+        </div>
+        <div class="text-field">{{userDetails.experience}}</div>
+    </div>
+
+    <div class="fx-column details-section">
+        <div>
+            <strong>Current role:</strong>
+        </div>
+        <div class="text-field">{{userDetails.role}}</div>
+    </div>
+
+    <div class="fx-column details-section">
+        <div>
+            <strong>Areas of domain:</strong>
+        </div>
+        <div class="text-field">{{userDetails.domainExpertise}}</div>
+    </div>
+
+    <button mat-raised-button color="primary" routerLink="/user/edit">Edit profile</button>
+</section>

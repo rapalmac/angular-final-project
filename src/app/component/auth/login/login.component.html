@@ -1,0 +1,27 @@
+<section class="container-narrow">
+    <form #formEl="ngForm" [formGroup]="formGroup" (ngSubmit)="onLogin()" class="fx-column fx-center">
+        <h2>Login</h2>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" id="email" placeholder="User email address" 
+                formControlName="email">
+
+            <mat-error *ngIf="formGroup.get('email').hasError('required')">The email is required.</mat-error>
+            <mat-error *ngIf="formGroup.get('email').hasError('minlength')">The email should be at least {{ formGroup.get('email').errors?.minlength.requiredLength }} caracters.</mat-error>
+            <mat-error *ngIf="formGroup.get('email').hasError('email')">'{{ formGroup.get('email').value }}' is not a valid email address.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" id="password" 
+                placeholder="Password" formControlName="password">
+
+            <mat-error *ngIf="formGroup.get('password').hasError('required')">The password is required.</mat-error>
+            <mat-error *ngIf="formGroup.get('password').hasError('minlength')">The password should be at least {{ formGroup.get('password').errors?.minlength.requiredLength }} caracters.</mat-error>
+            <mat-error *ngIf="formGroup.get('password').hasError('password')">The password should have upper, lower letters an numbers.</mat-error>
+        </mat-form-field>
+
+        <div class="fx-row fx-center">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!formGroup.valid">Login</button>
+        </div>
+    </form>
+</section>

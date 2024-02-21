@@ -1,0 +1,95 @@
+<section class="container">
+    <form (ngSubmit)="onFormSubmit()" [formGroup]="fg" class="fx-column">
+        <h2>Edit user profile</h2>
+        <mat-form-field>
+            <mat-label>Display name</mat-label>
+            <input matInput type="text" formControlName="displayName" placeholder="Display name">
+            <mat-hint>Also know as nick name.</mat-hint>
+            
+            <mat-error *ngIf="fg.get('displayName')?.hasError('required')">
+                The display name is required.
+            </mat-error>
+            <mat-error *ngIf="fg.get('displayName')?.hasError('minlength')">
+                The display name should be at least 4 caracters.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Fisrt name</mat-label>
+            <input matInput type="text" formControlName="firstName" placeholder="Fisrt name">
+
+            <mat-error *ngIf="fg.get('firstName')?.hasError('required')">
+                The fisrt name is required.
+            </mat-error>
+            <mat-error *ngIf="fg.get('firstName')?.hasError('minlength')">
+                The fisrt name should be at least 4 caracters.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Last name</mat-label>
+            <input matInput type="text" formControlName="lastName" placeholder="Last name">
+
+            <mat-error *ngIf="fg.get('lastName')?.hasError('required')">
+                The last name is required.
+            </mat-error>
+            <mat-error *ngIf="fg.get('lastName')?.hasError('minlength')">
+                The last name should be at least 4 caracters.
+            </mat-error>
+        </mat-form-field>
+        <mat-label>Select your user type</mat-label>
+        <mat-radio-group aria-label="Select an option" formControlName="userType" (change)="onSelectUserType()">
+            <mat-radio-button value="student">Student</mat-radio-button>
+            <mat-radio-button value="professional">Professional</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field>
+            <mat-label>About me:</mat-label>
+            <textarea matInput formControlName="bio" placeholder="Tell us more about you"
+                cdkTextareaAutosize  
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="3"></textarea>
+
+            <mat-error *ngIf="fg.get('bio')?.hasError('minlength')">
+                The bio should be at least 20 caracters.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Areas of interests:</mat-label>
+            <mat-select placeholder="Select your interests" multiple formControlName="interests">
+                <mat-option *ngFor="let interest of availableInterests" [value]="interest">{{interest}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Professional experience:</mat-label>
+            <input matInput type="text" formControlName="experience" placeholder="Professional experience">
+            <mat-hint>e.g. Java 5 years, Angular 2 years</mat-hint>
+
+            <mat-error *ngIf="fg.get('experience')?.hasError('required')">
+                The experience is required for a professional user.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Current role:</mat-label>
+            <input matInput type="text" formControlName="role" placeholder="Role">
+            <mat-hint>e.g. Web developer</mat-hint>
+
+            <mat-error *ngIf="fg.get('role')?.hasError('required')">
+                The role is required for a professional user.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Areas of domain:</mat-label>
+            <input matInput type="text" formControlName="domainExpertise" placeholder="Areas of domain">
+            <mat-hint>e.g. Front-end, Devops, Automation</mat-hint>
+
+            <mat-error *ngIf="fg.get('domainExpertise')?.hasError('required')">
+                The areas of expertise are required for a professional user.
+            </mat-error>
+        </mat-form-field>
+
+        <div class="fx-row">
+            <button mat-raised-button type="submit" color="primary" [disabled]="!fg.valid">Save</button>
+            <button mat-raised-button routerLink="/user">Cancel</button>
+        </div>
+    </form>
+</section>
+

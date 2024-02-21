@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <span>Angular Exercice 4</span>
+  <span *ngIf="isAuthenticated()">    
+    <button mat-flat-button color="primary" routerLink="/home" routerLinkActive="active-link">Home</button>
+    <button mat-flat-button color="primary" routerLink="/authors" routerLinkActive="active-link">Authors</button>
+    <button mat-flat-button color="primary" routerLink="/genres" routerLinkActive="active-link">Genres</button>
+  </span>
+  <span class="flex-auto"></span>
+  <span *ngIf="!isAuthenticated()">
+    <button mat-flat-button color="primary" routerLink="/signup" routerLinkActive="active-link">Signup</button>
+    <button mat-flat-button color="primary" routerLink="/login" routerLinkActive="active-link">Login</button>
+  </span>
+  <span *ngIf="isAuthenticated()">
+    <button mat-flat-button color="primary" routerLink="/user">My profile</button>
+    <button mat-flat-button color="primary" (click)="logout()">Logout</button>
+  </span>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

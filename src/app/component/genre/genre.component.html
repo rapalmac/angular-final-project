@@ -1,0 +1,41 @@
+<section class="container">
+    <form #formEl="ngForm" [formGroup]="formGroup" (ngSubmit)="onSaveForm()" class="fx-column fx-center">
+        <h2>Genres</h2>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput type="text" id="name" placeholder="Genres' name" 
+                formControlName="name">
+
+            <mat-error *ngIf="formGroup.get('name').hasError('required')">The name is required.</mat-error>
+            <mat-error *ngIf="formGroup.get('name').hasError('minlength')">The name should be at least 4 caracters.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input matInput type="text" id="description" 
+                placeholder="Description" formControlName="description">
+
+            <mat-error *ngIf="formGroup.get('description').hasError('minlength')">The name should be at least 10 caracters.</mat-error>
+        </mat-form-field>
+
+        <div class="fx-row fx-right">
+            <button mat-raised-button id="saveBtn" color="primary" type="submit" *ngIf="!selection.isSelected()" [disabled]="!formGroup.valid">Save</button>
+            <button mat-raised-button id="updateBtn" color="accent" type="submit" *ngIf="selection.isSelected()" [disabled]="!formGroup.valid">Update</button>
+            <button mat-raised-button type="reset" (click)="resetForm()">Reset</button>
+        </div>
+    </form>
+
+    <table mat-table #dataTable [dataSource]="dataSource">
+        <ng-container matColumnDef="fullname">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let genre"> {{genre.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="country">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let genre"> {{genre.description}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let rowData; columns: columnsToDisplay" (click)="onSelectRow(rowData, $event)"></tr>
+    </table>
+</section>

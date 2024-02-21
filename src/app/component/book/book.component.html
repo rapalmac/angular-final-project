@@ -1,0 +1,81 @@
+<section class="container">
+    <form #formEl="ngForm" [formGroup]="formGroup" (ngSubmit)="onSaveForm()" class="fx-column fx-center">
+        <h2>Books</h2>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput type="text" id="name" placeholder="Book's name" 
+                formControlName="name">
+
+            <mat-error *ngIf="formGroup.get('name').hasError('required')">The book's name is required.</mat-error>
+            <mat-error *ngIf="formGroup.get('name').hasError('minlength')">The name should be at least {{ formGroup.get('name').errors?.minlength.requiredLength }} caracters.</mat-error>
+        </mat-form-field>
+        <mat-form-field>      
+            <mat-label>Author</mat-label>          
+            <mat-select matInput type="text" id="author" placeholder="Select an author" 
+                formControlName="author" [compareWith]="compareFn">
+                <mat-option *ngFor="let item of availableAuthors | async" [value]="item">{{item.fullname}}</mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="formGroup.get('author').hasError('required')">The author is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field>      
+            <mat-label>Genre</mat-label>          
+            <mat-select matInput type="text" id="genre" placeholder="Select a genre" 
+                formControlName="genre" [compareWith]="compareFn">
+                <mat-option *ngFor="let item of availableGenres | async" [value]="item">{{item.name}}</mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="formGroup.get('genre').hasError('required')">The genre is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Year</mat-label>
+            <input matInput type="text" id="year" 
+                placeholder="Year" formControlName="year">
+
+            <mat-error *ngIf="formGroup.get('year').hasError('minlength')">The year should be at least {{ formGroup.get('year').errors?.minlength.requiredLength }} caracters.</mat-error>
+            <mat-error *ngIf="formGroup.get('year').hasError('maxlength')">The year should be maximum {{ formGroup.get('year').errors?.maxlength.requiredLength }} caracters.</mat-error>
+            <mat-error *ngIf="formGroup.get('year').hasError('pattern')">The year should contain only numbers.</mat-error>
+        </mat-form-field>
+
+        <div class="fx-row fx-right">
+            <button mat-raised-button id="saveBtn" color="primary" type="submit" *ngIf="!selection.isSelected()" [disabled]="!formGroup.valid">Save</button>
+            <button mat-raised-button id="updateBtn" color="accent" type="submit" *ngIf="selection.isSelected()" [disabled]="!formGroup.valid">Update</button>
+            <button mat-raised-button type="reset" (click)="resetForm()">Reset</button>
+        </div>
+    </form>
+
+    <mat-form-field class="table-filter">
+        <mat-label>Filter table</mat-label>
+        <input matInput type="text" id="filterInput" #filterInput placeholder="Filter" (keyup)="onTableFilter($event)">
+    </mat-form-field>
+
+    <table mat-table #dataTable [dataSource]="dataSource">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let book"> {{book.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="author">
+            <th mat-header-cell *matHeaderCellDef> Author </th>
+            <td mat-cell *matCellDef="let book"> {{book.author.fullname}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="genre">
+            <th mat-header-cell *matHeaderCellDef> Genre </th>
+            <td mat-cell *matCellDef="let book"> {{book.genre.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="year">
+            <th mat-header-cell *matHeaderCellDef> Year </th>
+            <td mat-cell *matCellDef="let book"> {{book.year}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let rowData; columns: columnsToDisplay" (click)="onSelectRow(rowData, $event)"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+    </mat-paginator>
+</section>

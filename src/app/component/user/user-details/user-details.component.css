@@ -1,0 +1,30 @@
+:host {
+    width: 100%;
+}
+
+.container {
+    width: auto;
+}
+
+.label-column {
+    width: 10em;
+}
+
+.details-section {
+    margin-bottom: 15px;
+}
+
+.text-field {
+    padding: 10px;
+    background: #f4f4f4;
+    width: 70%;
+    min-height: 20px;
+}
+
+.fx-column {
+    gap: 5px;
+}
+
+p {
+    white-space: pre;
+}

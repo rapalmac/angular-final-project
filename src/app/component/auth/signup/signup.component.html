@@ -1,0 +1,85 @@
+<section class="container">
+    <form [formGroup]="fg" class="fx-column fx-center" (ngSubmit)="onSubmit()">
+        <h2>Signup</h2>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput id="email" type="text" placeholder="Email Address" formControlName="email"/>
+            <mat-hint>
+                The email address will be used for login.
+            </mat-hint>
+            
+            <mat-error *ngIf="fg.get('email')?.hasError('required')">
+                The email adress is required.
+            </mat-error>
+            <mat-error *ngIf="fg.get('email')?.hasError('minlength')">
+                The email should be at least 4 caracters.
+            </mat-error>
+            <mat-error *ngIf="fg.get('email')?.hasError('email')">
+                '{{ fg.get('email')?.value }}' is not a valid email address.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Display name</mat-label>
+            <input matInput type="text" id="displayName" placeholder="Display name" formControlName="displayName"/>
+            <mat-hint>Also know as nick name.</mat-hint>
+            
+            <mat-error *ngIf="fg.get('displayName')?.hasError('required')">
+                The display name is required.
+            </mat-error>
+            <mat-error *ngIf="fg.get('displayName')?.hasError('minlength')">
+                The display name should be at least 4 caracters.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>First name</mat-label>
+            <input matInput type="text" placeholder="First name" formControlName="firstName"/>
+
+            <mat-error *ngIf="fg.get('firstName')?.hasError('required')">
+                The fisrt name is required.
+            </mat-error>
+            <mat-error *ngIf="fg.get('firstName')?.hasError('minlength')">
+                The fisrt name should be at least 4 caracters.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Last name</mat-label>
+            <input matInput type="text" placeholder="Last name" formControlName="lastName"/>
+
+            <mat-error *ngIf="fg.get('lastName')?.hasError('required')">
+                The last name is required.
+            </mat-error>
+            <mat-error *ngIf="fg.get('lastName')?.hasError('minlength')">
+                The last name should be at least 4 caracters.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Password" formControlName="password"/>
+            <mat-hint>
+                The password should contain numbers and lower and upper case letters.
+            </mat-hint>
+
+            <mat-error *ngIf="fg.get('password')?.hasError('required')">
+                The email adress is required.
+            </mat-error>
+            <mat-error *ngIf="fg.get('password')?.hasError('minlength')">
+                The email should be at least 8 caracters.
+            </mat-error>
+            <mat-error *ngIf="fg.get('password')?.hasError('password')">
+                '{{ fg.get('password')?.value }}' is not a valid password.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-label>Select your user type</mat-label>
+        <mat-radio-group aria-label="Select an option" formControlName="userType">
+            <mat-radio-button value="student" [checked]="true">Student</mat-radio-button>
+            <mat-radio-button value="professional">Professional</mat-radio-button>
+        </mat-radio-group>
+
+        <div class="fx-row fx-right">
+            <button mat-raised-button id="saveBtn" color="primary" type="submit" [disabled]="!fg.valid">Save</button>
+            <button mat-raised-button type="button" routerLink="/login">Go to login</button>
+        </div>
+    </form>    
+</section>
