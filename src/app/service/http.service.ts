@@ -1,14 +1,14 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject } from "@angular/core";
-import { Observable, catchError } from "rxjs";
+import { Observable } from "rxjs";
 
 export abstract class HttpService<Type> {
     http:HttpClient = inject(HttpClient);
 
     abstract getUrl():string;
     
-    add(t:Type):Observable<void> {
-        return this.http.post<void>(this.getUrl(), t);
+    add(t:Partial<Type>):Observable<Type> {
+        return this.http.post<Type>(this.getUrl(), t);
     }
 
     update(id:string, t:Type):Observable<Type> {

@@ -1,0 +1,54 @@
+
+    <div class="home-grid">        
+        <div class="home-grid-box-1">        
+            <mat-card class="user-card">
+                <mat-card-header>
+                    <mat-card-title>Welcome</mat-card-title>
+                    <mat-card-subtitle>{{userDetails.user.firstName}} {{userDetails.user.lastName}}</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <div class="image-cropper">
+                        <span class="user-badge">{{userDetails.user.userType}}</span>
+                        <img mat-card-image class="rounded" [src]="userDetails.picture?.url"
+                            alt="Profile picture">
+                    </div>
+                </mat-card-content>
+
+                <mat-card-footer>
+                    <h2>{{userDetails.user.displayName}}</h2>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Your courses">
+                <div class="course-cards-grid">
+                    <mat-card class="course-card" *ngFor="let course of userCourses">
+                        <img class="course-card-img" 
+                            [src]="'https://www.shutterstock.com/image-vector/3d-web-vector-illustrations-online-600nw-2152289507.jpg'">
+                        <mat-card-header>
+                            <mat-card-title>{{course.name}}</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-footer>
+                            <mat-card-subtitle>{{course.category | uppercase}}</mat-card-subtitle>
+                            <mat-progress-bar 
+                                mode="determinate" aria-valuemax="5" [value]="calcCourseRating(course)"></mat-progress-bar>
+                        </mat-card-footer>
+                        <mat-card-actions align="start">
+                            <button mat-button>VIEW</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </mat-tab>
+            <mat-tab label="Your orders">
+                <div class="container">
+                    <mat-list dense>
+                        <mat-list-item *ngFor="let order of userOrders" class="fx-row">
+                            {{ order.date | date}} {{ order.id}} {{ order.total | currency }}
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                    </mat-list>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>

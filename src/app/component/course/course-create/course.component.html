@@ -1,0 +1,42 @@
+<section class="container">
+    <form [formGroup]="fg" class="fx-column fx-center" (ngSubmit)="onSubmit()">
+        <h2>Create a new course</h2>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput type="text" placeholder="Course name" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Category</mat-label>
+            <mat-select placeholder="Course category" formControlName="category">
+                <mat-option value="beginner">Beginner</mat-option>
+                <mat-option value="intermediate">Intermediate</mat-option>
+                <mat-option value="advanced">Advanced</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input matInput type="number" placeholder="Course price" formControlName="price">
+        </mat-form-field>
+
+        <div class="file-upload">
+            <button mat-icon-button matSuffix color="primary" (click)="inputFile.click()">
+                <mat-icon>attachment</mat-icon>
+            </button>
+            <input #inputFile hidden type="file" accept="image/png, image/jpeg" (change)="onFileSelected($event);">
+            <span *ngIf="!pictureName">
+                Select a picture file.
+            </span>
+            <span *ngIf="pictureName">
+                {{pictureName}}
+            </span>
+            
+        </div>
+
+        <div class="fx-row fx-right">
+            <button mat-raised-button type="submit" color="primary">Save</button>
+            <button mat-raised-button type="reset" (click)="onReset()">Reset</button>
+        </div>
+    </form>
+</section>>

@@ -1,0 +1,17 @@
+.courses-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2em;
+}
+
+.courses-header {
+    margin-bottom: 20px;
+}
+
+img.course-card-img {
+    width: 100%;
+    border-radius: 7px 7px 0px 0px;
+    display: block;
+    max-height: 15em;
+    object-fit: cover;
+}

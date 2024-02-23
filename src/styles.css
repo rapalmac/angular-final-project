@@ -8,6 +8,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin: auto;
 }
 
+.container-wide {
+    width: 90%;
+    margin: auto;
+}
+
 .container-narrow {
     width: 20%;
     margin: auto;

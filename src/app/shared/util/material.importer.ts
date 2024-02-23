@@ -1,6 +1,6 @@
-import { MatInput, MatHint, MatLabel, MatError, MatFormField } from "@angular/material/input";
+import { MatInput, MatHint, MatLabel, MatError, MatFormField, MatSuffix } from "@angular/material/input";
 import { MatCheckbox } from "@angular/material/checkbox";
-import { MatButton } from "@angular/material/button";
+import { MatButton, MatIconButton, MatFabButton, MatMiniFabButton } from "@angular/material/button";
 import { MatTableModule } from "@angular/material/table";
 import { MatTab, MatTabBody, MatTabGroup, MatTabContent } from "@angular/material/tabs";
 import { MatToolbar } from "@angular/material/toolbar";
@@ -13,12 +13,18 @@ import { MatCard, MatCardActions, MatCardContent, MatCardFooter, MatCardHeader, 
 import { MatGridList, MatGridTile } from "@angular/material/grid-list";
 import { MatChipSet, MatChip, MatChipListbox, MatChipOption } from "@angular/material/chips";
 import { MatBadge } from "@angular/material/badge";
+import { MatIcon } from "@angular/material/icon";
+import { MatMenu, MatMenuItem, MatMenuTrigger } from "@angular/material/menu";
+import { MatList, MatListItem } from "@angular/material/list";
+import { MatDivider } from "@angular/material/divider";
+import { MatProgressBar } from "@angular/material/progress-bar";
 
 
 export function importMatComponents() {    
     return [
-        MatInput, MatHint, MatLabel, MatError, MatFormField,
-        MatButton,
+        MatInput, MatHint, MatLabel, MatError, MatFormField, MatSuffix,
+        MatButton, MatIconButton, MatFabButton, MatMiniFabButton,
+        MatIcon,
         MatTableModule, MatPaginator,
         MatCheckbox,
         MatSelect, MatOption,
@@ -27,7 +33,11 @@ export function importMatComponents() {
         MatGridList, MatGridTile, 
         MatCard, MatCardContent, MatCardImage, MatCardActions, MatCardTitle, MatCardHeader, MatCardSubtitle,MatCardFooter,
         MatChipSet, MatChip, MatChipListbox, MatChipOption,
-        MatBadge
+        MatBadge,
+        MatMenu, MatMenuTrigger, MatMenuItem,
+        MatTab, MatTabBody, MatTabGroup, MatTabContent,
+        MatList, MatListItem, MatDivider,
+        MatProgressBar
     ];
 }
 
@@ -35,7 +45,8 @@ export function importAppHeaderComponents() {
     return [
         MatTab, MatTabBody, MatTabGroup, MatTabContent,
         MatToolbar,
-        MatButton
+        MatButton, MatIconButton, MatIcon,
+        MatBadge
     ];
 }
 

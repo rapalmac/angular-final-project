@@ -6,7 +6,7 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { UserService } from '../../../service/app.services';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { SignupSuccessDialog as SignupSuccessDialog } from '../../../shared/dialog/signup-success-dialog/signup-success-dialog';
+import { AlertDialog as AlertDialog } from '../../../shared/dialog/alert-dialog/alert-dialog';
 import { Router, RouterLink } from '@angular/router';
 import { passwordValidator } from '../../../shared/validator/validators';
 
@@ -64,7 +64,12 @@ export class SignupComponent implements OnInit{
 
   onSubmit() {
     this.service.add(this.fg.value).subscribe(() => {
-      this.dialogRef.open(SignupSuccessDialog).afterClosed().subscribe(() => {
+      this.dialogRef.open(AlertDialog, {
+        data: {
+          title: "Signup successfully.",
+          message: "The user was registered correctly, you will get redirected to the login page."
+        }
+      }).afterClosed().subscribe(() => {
         this.router.navigate(["/login"]);
       });
       this.resetForm();

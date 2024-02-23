@@ -1,0 +1,59 @@
+<section class="container">
+    <h2>Cart</h2>
+
+    <div class="fx-row">
+        <span class="flex-auto">
+            <strong>Total in your cart:</strong>
+        </span>
+        <h2>{{getTotal() | currency}}</h2>
+    </div>
+
+    <div class="fx-row">
+        <span class="flex-auto"></span>
+        <button 
+            mat-raised-button 
+            type="button" 
+            color="accent" 
+            [disabled]="!cartList || cartList.length <= 0"
+            (click)="onCheckout()">Checkout</button>
+        <button 
+            mat-raised-button 
+            type="button" 
+            [disabled]="!cartList || cartList.length <= 0">Empty cart</button>
+    </div>
+    
+    <div class="cart-empty-label">
+        <h2 *ngIf="!cartList || cartList.length <= 0">You got not courses added to the shopping cart.</h2>
+    </div>
+
+    <div class="cart-card-list" *ngIf="cartList && cartList.length > 0">
+        <div *ngFor="let course of cartList" class="cart-card">
+            <div class="fx-row">
+                <mat-label class="flex-auto">
+                    <mat-label>
+                        {{course.name}}
+                    </mat-label>
+                    <h2>
+                        {{course.price | currency}}
+                    </h2>
+                </mat-label>
+                
+                <div class="cart-item-middle">
+                    <strong>Qty:</strong>
+                    <mat-label>
+                        {{1}}
+                    </mat-label>
+                </div>
+                <div class="cart-item-middle">
+                    <button mat-icon-button 
+                        color="primary" 
+                        type="button"
+                        (click)="onRemoveCourse(course)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div> 
+            
+        </div>
+    </div>
+</section>

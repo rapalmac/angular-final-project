@@ -17,25 +17,35 @@ export interface User {
     experience?:string;
     domainExpertise?:string;
     role?:string;
-    picture?:string;
+    pictureId?:string;
+    courses?:string[];
 }
 
-export interface Author {
+export interface CourseRate {
     id:string;
-    fullname:string;
-    country:string;
+    user:Partial<User>;
+    rate:number;
+    comments:string;
 }
 
-export interface Genre {
-    id:string;
-    name:string;
-    description:string;
-}
-
-export interface Book {
+export interface Course {
     id:string;
     name:string;
-    author:Author;
-    genre:Genre;
-    year:string
+    category: "begginer" | "intermediate" | "advance";
+    pictureId?:string;
+    price:number;
+    rating?:CourseRate[]
+}
+
+export interface Order {
+    id:string;
+    date:Date,
+    userId:string,
+    courses:string[],
+    total:number
+}
+
+export interface Picture {
+    id:string;
+    url:string;
 }

@@ -1,0 +1,67 @@
+<section class="container-wide">
+    <div class="courses-header">
+        <h2>Courses</h2>
+        <form class="fx-row">
+            <mat-form-field>
+                <mat-label>Filter by</mat-label>
+                <mat-select 
+                    placeholder="Select the property you want to filter to" 
+                    [ngModel]="filterBy"
+                    name="filterBy"
+                    (selectionChange)="onFilterByChange($event)">
+                    <mat-option value="name">Name</mat-option>
+                    <mat-option value="category">Category</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="flex-auto">
+                <mat-label>Filter by {{filterBy}}</mat-label>
+                <input matInput type="text" (keyup)="onFilterKeyup($event)" [disabled]="!filterBy">
+                <mat-icon matSuffix color="primary">search</mat-icon>
+            </mat-form-field>
+        </form>
+
+        <div class="fx-row fx-right">
+            <div class="fx-row flex-auto">
+            <div class="fx-row" *ngIf="filterBy && filterString">
+                <mat-chip-set>
+                    <mat-chip color="accent" selected><strong>Filtered by:</strong></mat-chip>
+                    <mat-chip>{{filterBy}}</mat-chip>
+                    <mat-chip>{{filterString}}</mat-chip>
+                </mat-chip-set>
+            </div>
+            <div class="fx-row" *ngIf="sortBy">                
+                <mat-chip-set>
+                    <mat-chip color="accent" selected><strong>Sorted by:</strong></mat-chip>
+                    <mat-chip>{{sortBy}}</mat-chip>
+                </mat-chip-set>
+            </div>
+            </div>  
+            <button mat-button type="button" [matMenuTriggerFor]="menu">Sort by</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="onSortCourses($event, 'price', 1)">Price lower to higher</button>
+                <button mat-menu-item (click)="onSortCourses($event, 'price', -1)">Price higher to lower</button>
+                <button mat-menu-item (click)="onSortCourses($event, 'name', 1)">Name ascendent</button>
+                <button mat-menu-item (click)="onSortCourses($event, 'name', -1)">Name descendent</button>
+            </mat-menu>
+            <button mat-button type="button" (click)="onClearFilters()">Clear filters</button>
+        </div>
+    </div>
+
+    <div class="courses-grid">
+        <mat-card *ngFor="let course of filteredList || availableCourses">
+            <img class="course-card-img"
+                [src]="'https://www.shutterstock.com/image-vector/3d-web-vector-illustrations-online-600nw-2152289507.jpg'">
+            <mat-card-header>
+                <mat-card-title>{{course.name}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-actions align="start">
+                <button 
+                    mat-button 
+                    (click)="onAddToCart(course)" 
+                    [disabled]="isUserCourse(course.id)">
+                    ADD TO CART
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</section>

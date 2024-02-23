@@ -1,0 +1,26 @@
+.cart-card-list {
+    margin-top: 25px;
+}
+
+.cart-card-list .cart-card:first-child {
+    border-top: 1px solid #c4c4c4;
+}
+
+.cart-card {
+    min-height: 25px;
+    border-left: 1px solid #c4c4c4;
+    border-right: 1px solid #c4c4c4;
+    border-bottom: 1px solid #c4c4c4;
+    padding: 20px;
+}
+
+.cart-item-middle {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.cart-empty-label {
+    justify-content: center;
+    display: flex;
+    margin-top: 25px;
+}

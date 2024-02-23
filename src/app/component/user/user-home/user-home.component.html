@@ -2,20 +2,20 @@
     <mat-grid-tile>        
         <mat-card class="example-card">
             <mat-card-header>
-                <mat-card-title>{{userDetails.firstName}} {{userDetails.lastName}}</mat-card-title>
-                <mat-card-subtitle>{{userDetails.email}}</mat-card-subtitle>
+                <mat-card-title>{{userDetails.user.firstName}} {{userDetails.user.lastName}}</mat-card-title>
+                <mat-card-subtitle>{{userDetails.user.email}}</mat-card-subtitle>
             </mat-card-header>
 
             <mat-card-content>
                 <div class="image-cropper">
-                    <span class="user-badge">{{userDetails.userType}}</span>
-                    <img mat-card-image class="rounded" [src]="this.localUrl || userDetails.picture || '/assets/image/blank-profile-picture.webp'"
+                    <span class="user-badge">{{userDetails.user.userType}}</span>
+                    <img mat-card-image class="rounded" [src]="this.localUrl || userDetails.picture?.url"
                         alt="Profile picture">
                 </div>
             </mat-card-content>
 
             <mat-card-footer>
-                <h2>{{userDetails.displayName}}</h2>
+                <h2>{{userDetails.user.displayName}}</h2>
             </mat-card-footer>
 
             <mat-card-actions>

@@ -1,0 +1,74 @@
+::ng-deep mat-grid-tile div.mat-grid-tile-content {
+    align-items: normal;
+    justify-content: left;
+}
+
+::ng-deep mat-grid-tile {
+    overflow: visible !important;
+    background-color: aqua;
+}
+
+mat-card {
+    width: 90%;
+    align-items: center;
+}
+
+.image-cropper {
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin: 10px auto;
+}
+
+img.rounded {
+    object-fit: cover;
+    border-radius: 50%;
+    height: 12em;
+    width: 12em;
+    border: 5px solid #fff;
+}
+
+.user-badge {
+    position: absolute;
+    z-index: 2;
+    background-color: #ff4081;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-top: -15px;
+    margin-left: -30px;
+    color: #fff;
+}
+
+mat-card.user-card mat-card-title, mat-card.user-card mat-card-subtitle {
+    text-align: center;
+}
+
+mat-card.user-card mat-card-title {
+    font-size: 25px;
+}
+
+mat-card.user-card mat-card-subtitle {
+    font-size: 17px;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+}
+
+img.course-card-img {
+    width: 100%;
+    border-radius: 7px 7px 0px 0px;
+    display: block;
+    max-height: 15em;
+    object-fit: cover;
+
+}
+
+.course-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2xem;
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: 25em auto;
+}
+

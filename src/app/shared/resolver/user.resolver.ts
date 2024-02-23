@@ -1,10 +1,9 @@
-import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from "@angular/router";
-import { User } from "../../model/model";
 import { inject } from "@angular/core";
-import { UserService } from "../../service/app.services";
+import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from "@angular/router";
 import { of } from "rxjs";
+import { UserDetails, UserService } from "../../service/app.services";
 
-export const userResolver: ResolveFn<User> = (
+export const userDetailsResolver: ResolveFn<UserDetails> = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ) => {
